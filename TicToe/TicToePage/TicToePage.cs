@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
@@ -10,7 +9,7 @@ using WebDriverManager.Helpers;
 
 namespace TicToePage
 {
-    class RicToePage
+    class TicToePage
     {
         public IWebDriver _webDriver;
         private static readonly By _twoPlayersButton = By.XPath("//div[@class='swap']");
@@ -40,72 +39,78 @@ namespace TicToePage
 
 
 
-        public RicToePage(IWebDriver driver)
+        public TicToePage(IWebDriver driver)
         {
             this._webDriver = driver;
         }
 
-        public RicToePage OpenPage()
+        public TicToePage OpenPage()
         {
             _webDriver.Navigate().GoToUrl("https://playtictactoe.org/");
             return this;
         }
 
-        public RicToePage ChangePlayers()
+        public TicToePage ChangePlayers()
         {
             _webDriver.FindElement(_twoPlayersButton).Click();
             return this;
         }
+
         //Click first row:
-        public RicToePage ClickTopLeft()
+        public TicToePage ClickTopLeft()
         {
             _webDriver.FindElement(_topLeft).Click();
             return this;
         }
 
-        public RicToePage ClickTop()
+        public TicToePage ClickTop()
         {
             _webDriver.FindElement(_top).Click();
             return this;
         }
 
-        public RicToePage ClickTopRight()
+        public TicToePage ClickTopRight()
         {
             _webDriver.FindElement(_topRight).Click();
             return this;
         }
+
         //Click second row:
-        public RicToePage ClickCentrLeft()
+        public TicToePage ClickCentrLeft()
         {
             _webDriver.FindElement(_centrLeft).Click();
             return this;
         }
-        public RicToePage ClickCenrt()
+
+        public TicToePage ClickCenrt()
         {
             _webDriver.FindElement(_centr).Click();
             return this;
         }
-        public RicToePage ClickCentrRight()
+
+        public TicToePage ClickCentrRight()
         {
             _webDriver.FindElement(_centrRight).Click();
             return this;
         }
+
         //Click Third Row:
-        public RicToePage ClickBottomLeft()
+        public TicToePage ClickBottomLeft()
         {
             _webDriver.FindElement(_bottomLeft).Click();
             return this;
         }
-        public RicToePage ClickBottom()
+        public TicToePage ClickBottom()
         {
             _webDriver.FindElement(_bottom).Click();
             return this;
         }
-        public RicToePage ClickBottomRight()
+        public TicToePage ClickBottomRight()
         {
             _webDriver.FindElement(_bottomRight).Click();
             return this;
         }
+
         //Get Player Scores
         public string GetPlayerOneScore()
         {
@@ -118,34 +123,21 @@ namespace TicToePage
             var score = _webDriver.FindElement(_playerTwoScore).Text;
             return score;
         }
+
         //Restart Game:
-        public RicToePage RestartGame()
+        public TicToePage RestartGame()
         {
             _webDriver.FindElement(_resetGame).Click();
             return this;
         }
+
         //MuteGame:
-        public RicToePage MuteGame()
+        public TicToePage MuteGame()
         {
             _webDriver.FindElement(_muteLocator).Click();
             return this;
-        }
-
-        public bool isAttribtuePresent(IWebElement element, String attribute)
-        {
-            Boolean result = false;
-            try
-            {
-                String value = element.GetAttribute("attribute");
-                if (value != null)
-                {
-                    result = true;
-                }
-            }
-            catch (Exception e) { }
-
-            return result;
-        }
+        }       
+        
     }
 
 }

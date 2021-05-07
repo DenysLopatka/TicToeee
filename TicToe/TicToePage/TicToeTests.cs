@@ -8,7 +8,7 @@ using WebDriverManager.Helpers;
 
 namespace TicToePage
 {
-    public class Tests
+    public class TicToeTests
     {
         private ChromeDriver _webDriver;
 
@@ -16,6 +16,7 @@ namespace TicToePage
         public void Setup()
         {
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+
             _webDriver = new ChromeDriver();
 
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(7);
@@ -25,18 +26,15 @@ namespace TicToePage
         [Test]
         public void SimpleWinAgainstAnotherPlayer()
         {
-            var ticToeGame = new RicToePage(_webDriver);
+            var ticToeGame = new TicToePage(_webDriver);
+
             ticToeGame.OpenPage()
                 .ChangePlayers()
                 .ClickTopLeft()
                 .ClickTop()
                 .ClickCentrLeft()
                 .ClickCenrt()
-                .ClickBottomLeft();
-
-                System.Threading.Thread.Sleep(1000);
-
-                ticToeGame.RestartGame();
+                .ClickBottomLeft();            
 
             Assert.AreEqual("1", ticToeGame.GetPlayerOneScore());
         }
@@ -44,15 +42,18 @@ namespace TicToePage
         [Test]
         public void CheckMute()
         {
-            var ticToeGame = new RicToePage(_webDriver);
+            var ticToeGame = new TicToePage(_webDriver);
             ticToeGame.OpenPage()
                 .MuteGame();
 
-            var element = _webDriver.FindElements(By.XPath("//div[@class='mute']//*"))[2];            
+            var element = _webDriver.FindElement(By.XPath("//div[@class='mute']//*[2]")).Displayed; 
 
-            var isMuted = ticToeGame.isAttribtuePresent(element, "display");            
+            
+            System.Threading.Thread.Sleep(500);
 
-            Assert.IsFalse(isMuted);
+            Assert.IsFalse(element);
         }
     }
+
+    
 }
