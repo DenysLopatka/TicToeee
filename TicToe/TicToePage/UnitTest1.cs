@@ -40,5 +40,21 @@ namespace TicToePage
 
             Assert.AreEqual("1", ticToeGame.GetPlayerOneScore());
         }
+
+        [Test]
+        public void CheckMute()
+        {
+            var ticToeGame = new RicToePage(_webDriver);
+            ticToeGame.OpenPage()
+                .MuteGame();
+
+            var element = _webDriver.FindElements(By.XPath("//div[@class='mute']//*"))[2];            
+
+            var isMuted = ticToeGame.isAttribtuePresent(element, "display");
+
+            ticToeGame.RestartGame();
+
+            Assert.IsTrue(isMuted);
+        }
     }
 }

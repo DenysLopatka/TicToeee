@@ -31,8 +31,14 @@ namespace TicToePage
         //Scores:
         private static readonly By _playerOneScore = By.XPath("//span[@class='score appear']");
         private static readonly By _playerTwoScore = By.XPath("//span[@class='score']");
-
+        //Restart Game:
         private static readonly By _resetGame = By.XPath("//div[@class='restart']");
+        //Mute:
+        private static readonly By _muteLocator = By.XPath("//div[@class='mute']");
+
+
+
+
 
         public RicToePage(IWebDriver driver)
         {
@@ -117,6 +123,28 @@ namespace TicToePage
         {
             _webDriver.FindElement(_resetGame).Click();
             return this;
+        }
+        //MuteGame:
+        public RicToePage MuteGame()
+        {
+            _webDriver.FindElement(_muteLocator).Click();
+            return this;
+        }
+
+        public bool isAttribtuePresent(IWebElement element, String attribute)
+        {
+            Boolean result = false;
+            try
+            {
+                String value = element.GetAttribute("attribute");
+                if (value != null)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception e) { }
+
+            return result;
         }
     }
 
