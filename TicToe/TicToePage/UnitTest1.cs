@@ -50,11 +50,9 @@ namespace TicToePage
 
             var element = _webDriver.FindElements(By.XPath("//div[@class='mute']//*"))[2];            
 
-            var isMuted = ticToeGame.isAttribtuePresent(element, "display");
+            var isMuted = ticToeGame.isAttribtuePresent(element, "display");            
 
-            ticToeGame.RestartGame();
-
-            Assert.IsTrue(isMuted);
+            Assert.IsFalse(isMuted);
         }
     }
 }
