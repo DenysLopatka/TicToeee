@@ -23,7 +23,7 @@ namespace TicToePage
         }
 
         [Test]
-        public void Test1()
+        public void SimpleWinAgainstAnotherPlayer()
         {
             var ticToeGame = new RicToePage(_webDriver);
             ticToeGame.OpenPage()
@@ -33,6 +33,10 @@ namespace TicToePage
                 .ClickCentrLeft()
                 .ClickCenrt()
                 .ClickBottomLeft();
+
+                System.Threading.Thread.Sleep(1000);
+
+                ticToeGame.RestartGame();
 
             Assert.AreEqual("1", ticToeGame.GetPlayerOneScore());
         }

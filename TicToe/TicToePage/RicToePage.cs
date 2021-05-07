@@ -112,6 +112,12 @@ namespace TicToePage
             var score = _webDriver.FindElement(_playerTwoScore).Text;
             return score;
         }
+        //Restart Game:
+        public RicToePage RestartGame()
+        {
+            _webDriver.FindElement(_resetGame).Click();
+            return this;
+        }
     }
 
 }
