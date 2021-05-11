@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TicToe"
   ],
+  "SelectedNode": "\\TicToe\\TicToe.sln",
   "PreviewInSolutionExplorer": false
 }
